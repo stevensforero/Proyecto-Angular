@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>{{tituloAccion}} Autor </h1>
+<div mat-dialog-content>
+    <form [formGroup]="formEmpleado">
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>TTítulo del libro</mat-label>
+                    <input matInput formControlName="libroTitulo" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Género</mat-label>
+                    <input matInput formControlName="libroGenero" autocomplete="off" >
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>No Páginas</mat-label>
+                    <input matInput formControlName="numeroPaginas" autocomplete="off" type="number">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Autores</mat-label>
+                    <mat-select formControlName="idAutor">
+                      <mat-option *ngFor="let item of listaAutores" [value]="item.idAutor">
+                        {{item.nombreAutor}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Año del libro</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="libroFecha">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+    </form>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button color="primary"
+  (click)="addEditEmpleado()"
+  [disabled]="formEmpleado.invalid"
+  >{{botonAccion}}
+</button>
+</div>
